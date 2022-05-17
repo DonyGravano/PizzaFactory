@@ -17,6 +17,7 @@ serviceCollection.AddSingleton<IToppingsConfiguration>(_ => new ToppingsConfigur
 serviceCollection.AddSingleton<IPizzaShopConfiguration>(_ => new PizzaShopConfiguration(config));
 serviceCollection.AddTransient<IPizzaCookingTimeCalculator, PizzaCookingTimeCalculator>();
 serviceCollection.AddTransient<IDataRepository, FileRepository>();
+serviceCollection.AddTransient<IRandomWrapperBuilder, RandomWrapperBuilder>();
 serviceCollection.AddSingleton<IPizzaFactory, PizzaFactory>();
 serviceCollection.AddSingleton<PizzaShop>();
 

@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ucas.PizzaFactory.UnitTests", "Ucas.PizzaFactory.UnitTests\Ucas.PizzaFactory.UnitTests.csproj", "{A4ECDBE3-9A58-4177-A1FB-0563B60BB9BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{D57C07C8-5605-48AA-A4D3-0A4584903CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D57C07C8-5605-48AA-A4D3-0A4584903CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D57C07C8-5605-48AA-A4D3-0A4584903CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4ECDBE3-9A58-4177-A1FB-0563B60BB9BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4ECDBE3-9A58-4177-A1FB-0563B60BB9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4ECDBE3-9A58-4177-A1FB-0563B60BB9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4ECDBE3-9A58-4177-A1FB-0563B60BB9BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
