@@ -80,7 +80,7 @@ namespace Ucas.PizzaFactory.UnitTests
         [Test]
         [InlineAutoData("spicy meatballs")]
         [InlineAutoData("spicy meat balls")]
-        [InlineAutoData("sp ic y meat b al ls")]
+        [InlineAutoData("sp ic y meatb al ls")]
         [InlineAutoData("a")]
         public void CalculatePizzaCookingTimeMs_ToppingContaintsWhiteSpace_ReturnsCorrectTime(string topping, List<PizzaBase> pizzaBases)
         {
