@@ -22,7 +22,7 @@ namespace Ucas.PizzaFactory
 
         public async Task StartMakingPizzasAsync()
         {
-            var pizzas = await _pizzaFactory.CreateRandomPizzasAsync(_pizzaShopConfiguration.TotalNumberOfPizzas);
+           await _pizzaFactory.CreateRandomPizzasAsync(_pizzaShopConfiguration.TotalNumberOfPizzas);
         }
     }
 }

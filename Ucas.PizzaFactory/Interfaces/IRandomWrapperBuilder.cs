@@ -8,6 +8,6 @@ namespace Ucas.PizzaFactory.Interfaces
 {
     public interface IRandomWrapperBuilder
     {
-        public RandomWrapper GetNewRandom();
+        public IRandomWrapper GetNewRandom();
     }
 }

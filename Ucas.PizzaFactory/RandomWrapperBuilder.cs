@@ -4,7 +4,7 @@ namespace Ucas.PizzaFactory
 {
     public class RandomWrapperBuilder: IRandomWrapperBuilder
     {
-        public RandomWrapper GetNewRandom()
+        public IRandomWrapper GetNewRandom()
         {
             return new RandomWrapper();
         }
