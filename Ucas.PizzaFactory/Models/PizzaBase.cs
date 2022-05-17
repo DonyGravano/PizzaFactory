@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PizzaFactory.Models
+namespace Ucas.PizzaFactory.Models
 {
     public class PizzaBase
     {
         public string Type { get; set; }
 
-        public int CookingTimeMultiplier { get; set; }
+        public double CookingTimeMultiplier { get; set; }
     }
 }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PizzaFactory.Interfaces
+namespace Ucas.PizzaFactory.Interfaces
 {
     public interface IPizzaShopConfiguration
-    {   
+    {
         public int BaseCookingTimeMs { get; set; }
         public int TotalNumberOfPizzas { get; set; }
         public int CookingInterval { get; set; }

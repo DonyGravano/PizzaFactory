@@ -1,16 +1,17 @@
 ﻿using Microsoft.Extensions.Configuration;
-using PizzaFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ucas.PizzaFactory.Interfaces;
+using Ucas.PizzaFactory.Models;
 
-namespace PizzaFactory
+namespace Ucas.PizzaFactory
 {
-    public class ToppingsConfiguration: IToppingsConfiguration
+    public class PizzaBaseConfiguration : IPizzaBaseConfiguration
     {
-        public ToppingsConfiguration(IConfiguration configuration)
+        public PizzaBaseConfiguration(IConfiguration configuration)
         {
             if (configuration is null)
             {
@@ -20,6 +21,6 @@ namespace PizzaFactory
             configuration.Bind(this);
         }
 
-        public IReadOnlyList<string> Toppings { get; set; }
+        public IReadOnlyList<PizzaBase> PizzaBases { get; set; }
     }
 }

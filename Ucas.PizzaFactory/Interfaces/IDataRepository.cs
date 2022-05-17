@@ -1,11 +1,11 @@
-﻿using PizzaFactory.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ucas.PizzaFactory.Models;
 
-namespace PizzaFactory.Interfaces
+namespace Ucas.PizzaFactory.Interfaces
 {
     public interface IDataRepository
     {

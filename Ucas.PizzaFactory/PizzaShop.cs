@@ -1,11 +1,11 @@
-﻿using PizzaFactory.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ucas.PizzaFactory.Interfaces;
 
-namespace PizzaFactory
+namespace Ucas.PizzaFactory
 {
     public class PizzaShop
     {
@@ -20,9 +20,9 @@ namespace PizzaFactory
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
         }
 
-        public void StartMakingPizzas()
+        public async Task StartMakingPizzasAsync()
         {
-            var pizzas = _pizzaFactory.CreateRandomPizzas(_pizzaShopConfiguration.TotalNumberOfPizzas);
+            var pizzas = await _pizzaFactory.CreateRandomPizzasAsync(_pizzaShopConfiguration.TotalNumberOfPizzas);
         }
     }
 }

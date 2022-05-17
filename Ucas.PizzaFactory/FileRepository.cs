@@ -1,12 +1,12 @@
-﻿using PizzaFactory.Interfaces;
-using PizzaFactory.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ucas.PizzaFactory.Interfaces;
+using Ucas.PizzaFactory.Models;
 
-namespace PizzaFactory
+namespace Ucas.PizzaFactory
 {
     public class FileRepository : IDataRepository
     {
@@ -20,7 +20,8 @@ namespace PizzaFactory
         public async Task StorePizzaAsync(Pizza pizza)
         {
             using StreamWriter file = new(_pizzaShopConfiguration.PizzaFileLocation, append: true);
-            await file.WriteLineAsync("Fourth line");
+            await file.WriteLineAsync($"Finished making a {pizza}");
+            Console.WriteLine($"Finished making a {pizza}");
         }
     }
 }

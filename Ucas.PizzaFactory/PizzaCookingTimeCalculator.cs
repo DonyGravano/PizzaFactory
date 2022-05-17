@@ -1,8 +1,8 @@
-﻿using PizzaFactory.Interfaces;
+﻿using Ucas.PizzaFactory.Interfaces;
 
-namespace PizzaFactory
+namespace Ucas.PizzaFactory
 {
-    public class PizzaCookingTimeCalculator: IPizzaCookingTimeCalculator
+    public class PizzaCookingTimeCalculator : IPizzaCookingTimeCalculator
     {
         private IPizzaShopConfiguration _pizzaShopConfiguration;
         private IPizzaBaseConfiguration _pizzaBaseConfiguration;
@@ -33,8 +33,8 @@ namespace PizzaFactory
             }
 
             var trimmedTopping = topping.Replace(" ", "");
-
-            return (_pizzaShopConfiguration.BaseCookingTimeMs * pizzaBaseSettings.CookingTimeMultiplier) + (trimmedTopping.Length * 100);
+            var baseCookingTime = (int)Math.Ceiling(_pizzaShopConfiguration.BaseCookingTimeMs * pizzaBaseSettings.CookingTimeMultiplier);
+            return baseCookingTime + (trimmedTopping.Length * 100);
         }
     }
 }

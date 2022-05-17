@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PizzaFactory.Models
+namespace Ucas.PizzaFactory.Models
 {
     public class Pizza
     {
-        public Pizza(PizzaBase pizzaBase, string topping, decimal totalCookingTime)
+        public Pizza(PizzaBase pizzaBase, string topping, int totalCookingTime)
         {
             Base = pizzaBase;
             Topping = topping;
@@ -18,5 +18,10 @@ namespace PizzaFactory.Models
         public PizzaBase Base { get; }
         public string Topping { get; }
         public int TotalCookingTime { get; }
+
+        public override string ToString()
+        {
+            return $"{Base.Type} pizza with {Topping} topping. This took {TotalCookingTime}ms to make";
+        }
     }
 }

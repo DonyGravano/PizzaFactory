@@ -1,14 +1,14 @@
-﻿using PizzaFactory.Interfaces;
-using PizzaFactory.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ucas.PizzaFactory.Interfaces;
+using Ucas.PizzaFactory.Models;
 
-namespace PizzaFactory
+namespace Ucas.PizzaFactory
 {
-    public class PizzaFactory
+    public class PizzaFactory : IPizzaFactory
     {
         private readonly IPizzaBaseConfiguration _pizzaBaseConfiguration;
         private readonly IToppingsConfiguration _toppingsConfiguration;
@@ -16,10 +16,10 @@ namespace PizzaFactory
         private readonly IPizzaCookingTimeCalculator _pizzaCookingTimeCalculator;
         private readonly IDataRepository _dataRepository;
 
-        public PizzaFactory(IPizzaBaseConfiguration pizzaBaseConfiguration, 
+        public PizzaFactory(IPizzaBaseConfiguration pizzaBaseConfiguration,
             IToppingsConfiguration toppingsConfiguration,
             IPizzaShopConfiguration pizzaShopConfiguration,
-            IPizzaCookingTimeCalculator pizzaCookingTimeCalculator, 
+            IPizzaCookingTimeCalculator pizzaCookingTimeCalculator,
             IDataRepository dataRepository)
         {
             _pizzaBaseConfiguration = pizzaBaseConfiguration ?? throw new ArgumentNullException(nameof(pizzaBaseConfiguration));
@@ -29,7 +29,7 @@ namespace PizzaFactory
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
         }
 
-        public async Task<IReadOnlyList<Pizza>> CreateRandomPizzas(int numberOfPizzas)
+        public async Task<IReadOnlyList<Pizza>> CreateRandomPizzasAsync(int numberOfPizzas)
         {
             // Inject me so with a wrapper so we can test this
             var toppingRandomizer = new Random();
@@ -41,9 +41,9 @@ namespace PizzaFactory
 
             for (int i = 0; i < numberOfPizzas; i++)
             {
-                var pizzaBase = _pizzaBaseConfiguration.PizzaBases[toppingRandomizer.Next(0, totalNumberOfPizzaBases - 1)];
-                var topping = _toppingsConfiguration.Toppings[baseRandomizer.Next(0, totalNumberOfToppings - 1)];
-                
+                var pizzaBase = _pizzaBaseConfiguration.PizzaBases[toppingRandomizer.Next(0, totalNumberOfPizzaBases)];
+                var topping = _toppingsConfiguration.Toppings[baseRandomizer.Next(0, totalNumberOfToppings)];
+
 
                 var totalCookingTimeMs = _pizzaCookingTimeCalculator.CalculatePizzaCookingTimeMs(pizzaBase.Type, topping);
 
