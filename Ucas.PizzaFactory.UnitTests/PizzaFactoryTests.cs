@@ -24,12 +24,12 @@ namespace Ucas.PizzaFactory.UnitTests
         private Mock<IDataRepository> _mockDataRepository;
         private Mock<IRandomWrapperBuilder> _mockRandomWrapperBuilder;
         private Mock<IDelayWrapper> _mockDelayWrapper;
-        
-        private PizzaFactory Sut => new PizzaFactory(_mockPizzaBaseConfiguration.Object, 
-            _mockToppingsConfiguration.Object, 
-            _mockPizzaShopConfiguration.Object, 
+
+        private PizzaFactory Sut => new PizzaFactory(_mockPizzaBaseConfiguration.Object,
+            _mockToppingsConfiguration.Object,
+            _mockPizzaShopConfiguration.Object,
             _mockPizzaCookingTimeCalculator.Object,
-            _mockDataRepository.Object, 
+            _mockDataRepository.Object,
             _mockRandomWrapperBuilder.Object,
             _mockDelayWrapper.Object);
 

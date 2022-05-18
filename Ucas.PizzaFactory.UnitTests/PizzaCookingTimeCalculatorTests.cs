@@ -8,7 +8,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Ucas.PizzaFactory.Interfaces;
 using Ucas.PizzaFactory.Models;
 
@@ -58,7 +57,7 @@ namespace Ucas.PizzaFactory.UnitTests
 
             Action func = () => Sut.CalculatePizzaCookingTimeMs(randomPizzaBase, randomTopping);
 
-            func.Should().Throw<InvalidOperationException>().And.Message.Should().Be($"No configuration values were found for pizza base: {randomPizzaBase}");   
+            func.Should().Throw<InvalidOperationException>().And.Message.Should().Be($"No configuration values were found for pizza base: {randomPizzaBase}");
         }
 
         [Test]
@@ -90,7 +89,7 @@ namespace Ucas.PizzaFactory.UnitTests
 
             var pizzaBaseType = pizzaBases.First();
             var result = Sut.CalculatePizzaCookingTimeMs(pizzaBaseType.Type, topping);
-            result.Should().Be((int)Math.Ceiling(pizzaBaseType.CookingTimeMultiplier * baseTimeMs) + (topping.Replace(" ","").Length * 100));
+            result.Should().Be((int)Math.Ceiling(pizzaBaseType.CookingTimeMultiplier * baseTimeMs) + (topping.Replace(" ", "").Length * 100));
         }
     }
 }

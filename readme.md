@@ -30,4 +30,4 @@ I've made use of FluentValidations, Moq and AutoFixture for the tests, it might 
 Sadly I don't have ReSharper on my personal PC so could not use that for code clean-up and formatting.   
 I'd also like to make use of JetBrains' dotCover tool to run code coverage over the solution and see what tests I'm missing  
 I've used the .net6 new console app template for the program.cs but I can't seem to call it for a test, i'd like investigate this so that I can test that the DI works correctly  
-Create a wrapper around the StreamWriter in the FileRepository so it can be tested
+Create a wrapper around the StreamWriter in the FileRepository so it can be tested  

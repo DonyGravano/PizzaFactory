@@ -1,6 +1,4 @@
-﻿using Ucas.PizzaFactory.Models;
-
-namespace Ucas.PizzaFactory.Interfaces
+﻿namespace Ucas.PizzaFactory.Interfaces
 {
     public interface IPizzaFactory
     {

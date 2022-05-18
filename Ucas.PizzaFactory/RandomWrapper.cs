@@ -2,7 +2,7 @@
 
 namespace Ucas.PizzaFactory
 {
-    public class RandomWrapper: IRandomWrapper
+    public class RandomWrapper : IRandomWrapper
     {
         private readonly Random random;
 

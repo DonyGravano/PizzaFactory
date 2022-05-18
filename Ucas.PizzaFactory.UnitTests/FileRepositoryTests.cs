@@ -1,15 +1,10 @@
-﻿using Albedo;
-using AutoFixture;
+﻿using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Idioms;
-using AutoFixture.NUnit3;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Ucas.PizzaFactory.Interfaces;
 

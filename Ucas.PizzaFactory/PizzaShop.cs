@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ucas.PizzaFactory.Interfaces;
+﻿using Ucas.PizzaFactory.Interfaces;
 
 namespace Ucas.PizzaFactory
 {
@@ -22,7 +17,7 @@ namespace Ucas.PizzaFactory
 
         public async Task StartMakingPizzasAsync()
         {
-           await _pizzaFactory.CreateRandomPizzasAsync(_pizzaShopConfiguration.TotalNumberOfPizzas);
+            await _pizzaFactory.CreateRandomPizzasAsync(_pizzaShopConfiguration.TotalNumberOfPizzas);
         }
     }
 }
