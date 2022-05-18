@@ -21,6 +21,8 @@ I've left things in one project however if the project were larger I'd break it 
 -	Abstractions - This would contain the interfaces so that specific implementations could exist in isolation
 -	Models - Model files
 
+I haven't followed any specific git branching policies as the project is too small.
+
 ## Testing
 I did not TDD this as I was unsure how much time I'd have to do this, so I added the tests after using the red, green, refactor process    
 I've used NUnit as it's what i'm most familiar with so it was the quickest to get setup, however with more time i'd opt for XUnit    

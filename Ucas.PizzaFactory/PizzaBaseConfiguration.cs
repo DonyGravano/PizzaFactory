@@ -14,6 +14,11 @@ namespace Ucas.PizzaFactory
             }
 
             configuration.Bind(this);
+
+            if (PizzaBases == null || !PizzaBases.Any())
+            {
+                throw new InvalidOperationException("The pizza bases list in the configuration was empty or missing");
+            }
         }
 
         public IReadOnlyList<PizzaBase> PizzaBases { get; set; }
