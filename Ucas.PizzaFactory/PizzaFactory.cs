@@ -16,13 +16,15 @@ namespace Ucas.PizzaFactory
         private readonly IPizzaCookingTimeCalculator _pizzaCookingTimeCalculator;
         private readonly IDataRepository _dataRepository;
         private readonly IRandomWrapperBuilder _randomWrapperBuilder;
+        private readonly IDelayWrapper _delayWrapper;
 
         public PizzaFactory(IPizzaBaseConfiguration pizzaBaseConfiguration,
             IToppingsConfiguration toppingsConfiguration,
             IPizzaShopConfiguration pizzaShopConfiguration,
             IPizzaCookingTimeCalculator pizzaCookingTimeCalculator,
             IDataRepository dataRepository,
-            IRandomWrapperBuilder randomWrapperBuilder)
+            IRandomWrapperBuilder randomWrapperBuilder,
+            IDelayWrapper delayWrapper)
         {
             _pizzaBaseConfiguration = pizzaBaseConfiguration ?? throw new ArgumentNullException(nameof(pizzaBaseConfiguration));
             _toppingsConfiguration = toppingsConfiguration ?? throw new ArgumentNullException(nameof(toppingsConfiguration));
@@ -30,6 +32,7 @@ namespace Ucas.PizzaFactory
             _pizzaCookingTimeCalculator = pizzaCookingTimeCalculator ?? throw new ArgumentNullException(nameof(pizzaCookingTimeCalculator));
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
             _randomWrapperBuilder = randomWrapperBuilder ?? throw new ArgumentNullException(nameof(randomWrapperBuilder));
+            _delayWrapper = delayWrapper ?? throw new ArgumentNullException(nameof(delayWrapper));
         }
 
         public async Task CreateRandomPizzasAsync(int numberOfPizzas)
@@ -52,12 +55,12 @@ namespace Ucas.PizzaFactory
 
                 var totalCookingTimeMs = _pizzaCookingTimeCalculator.CalculatePizzaCookingTimeMs(pizzaBase.Type, topping);
 
-                await Task.Delay(totalCookingTimeMs);
+                await _delayWrapper.Delay(totalCookingTimeMs);
                 var pizza = new Pizza(pizzaBase, topping, totalCookingTimeMs);
 
                 await _dataRepository.StorePizzaAsync(pizza);
 
-                await Task.Delay(_pizzaShopConfiguration.CookingInterval);
+                await _delayWrapper.Delay(_pizzaShopConfiguration.CookingInterval);
             }
         }
     }

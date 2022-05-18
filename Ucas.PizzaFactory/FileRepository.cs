@@ -19,6 +19,11 @@ namespace Ucas.PizzaFactory
 
         public async Task StorePizzaAsync(Pizza pizza)
         {
+            if (pizza is null)
+            {
+                throw new ArgumentNullException(nameof(pizza));
+            }
+
             using StreamWriter file = new(_pizzaShopConfiguration.PizzaFileLocation, append: true);
             await file.WriteLineAsync($"Finished making a {pizza}");
             Console.WriteLine($"Finished making a {pizza}");

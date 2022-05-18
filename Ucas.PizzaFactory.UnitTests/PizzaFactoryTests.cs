@@ -23,13 +23,15 @@ namespace Ucas.PizzaFactory.UnitTests
         private Mock<IPizzaCookingTimeCalculator> _mockPizzaCookingTimeCalculator;
         private Mock<IDataRepository> _mockDataRepository;
         private Mock<IRandomWrapperBuilder> _mockRandomWrapperBuilder;
+        private Mock<IDelayWrapper> _mockDelayWrapper;
         
         private PizzaFactory Sut => new PizzaFactory(_mockPizzaBaseConfiguration.Object, 
             _mockToppingsConfiguration.Object, 
             _mockPizzaShopConfiguration.Object, 
             _mockPizzaCookingTimeCalculator.Object,
             _mockDataRepository.Object, 
-            _mockRandomWrapperBuilder.Object);
+            _mockRandomWrapperBuilder.Object,
+            _mockDelayWrapper.Object);
 
         [SetUp]
         public void SetUp()
@@ -40,6 +42,9 @@ namespace Ucas.PizzaFactory.UnitTests
             _mockRandomWrapperBuilder = new Mock<IRandomWrapperBuilder>();
             _mockPizzaShopConfiguration = new Mock<IPizzaShopConfiguration>();
             _mockPizzaCookingTimeCalculator = new Mock<IPizzaCookingTimeCalculator>();
+            _mockDelayWrapper = new Mock<IDelayWrapper>();
+
+            _mockDelayWrapper.Setup(dw => dw.Delay(It.IsAny<int>())).Callback(() => { });
 
             var fixture = new Fixture();
             _mockPizzaBaseConfiguration.Setup(pbc => pbc.PizzaBases).Returns(fixture.Create<List<PizzaBase>>());

@@ -4,8 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Ucas.PizzaFactory;
 using Ucas.PizzaFactory.Interfaces;
 
-Console.WriteLine("Hello, World!");
-
 var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json").Build();
@@ -18,9 +16,12 @@ serviceCollection.AddSingleton<IPizzaShopConfiguration>(_ => new PizzaShopConfig
 serviceCollection.AddTransient<IPizzaCookingTimeCalculator, PizzaCookingTimeCalculator>();
 serviceCollection.AddTransient<IDataRepository, FileRepository>();
 serviceCollection.AddTransient<IRandomWrapperBuilder, RandomWrapperBuilder>();
-serviceCollection.AddSingleton<IPizzaFactory, PizzaFactory>();
+serviceCollection.AddTransient<IPizzaFactory, PizzaFactory>();
+serviceCollection.AddTransient<IDelayWrapper, DelayWrapper>();
 serviceCollection.AddSingleton<PizzaShop>();
 
 var pizzaShop = serviceCollection.BuildServiceProvider().GetRequiredService<PizzaShop>();
 
 await pizzaShop.StartMakingPizzasAsync();
+
+Environment.Exit(0);
