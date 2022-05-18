@@ -10,15 +10,8 @@ var config = new ConfigurationBuilder()
 
 var serviceCollection = new ServiceCollection();
 
-serviceCollection.AddSingleton<IPizzaBaseConfiguration>(_ => new PizzaBaseConfiguration(config));
-serviceCollection.AddSingleton<IToppingsConfiguration>(_ => new ToppingsConfiguration(config));
-serviceCollection.AddSingleton<IPizzaShopConfiguration>(_ => new PizzaShopConfiguration(config));
-serviceCollection.AddTransient<IPizzaCookingTimeCalculator, PizzaCookingTimeCalculator>();
-serviceCollection.AddTransient<IDataRepository, FileRepository>();
-serviceCollection.AddTransient<IRandomWrapperBuilder, RandomWrapperBuilder>();
-serviceCollection.AddTransient<IPizzaFactory, PizzaFactory>();
-serviceCollection.AddTransient<IDelayWrapper, DelayWrapper>();
-serviceCollection.AddSingleton<PizzaShop>();
+serviceCollection.AddPizzaClasses(config);
+serviceCollection.AddUtilityClasses();
 
 var pizzaShop = serviceCollection.BuildServiceProvider().GetRequiredService<PizzaShop>();
 

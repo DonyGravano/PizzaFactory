@@ -15,7 +15,7 @@ The configs could be done as one file however I've split them out just so it's t
 I've created a wrapper for the random objects so that this can be mocked during the tests  
 I've created a wrapper for the delay so that it doesn't impede the tests
 It feels a bit wrong to have the PizzaFactory saving the pizzas as it doesn't feel like it should be it's responsibility, but the requirements stated it had to be written to file after it cooked so it was just simpler to do it in there.  
-I've left things in one project however if the project were larger I'd break it down into the following projects/Layers:
+I've left things in one project however if the project were larger I'd break it down into the following projects/layers with corresponding test projects :
 -	Application - This would contain any pizza application specific logic, i.e. the Shop, Factory and CookingTimeCalculator
 -	DataProviders - These would be implementions of certain interfaces like the DataRepository
 -	Abstractions - This would contain the interfaces so that specific implementations could exist in isolation
@@ -33,3 +33,4 @@ Sadly I don't have ReSharper on my personal PC so could not use that for code cl
 I'd also like to make use of JetBrains' dotCover tool to run code coverage over the solution and see what tests I'm missing  
 I've used the .net6 new console app template for the program.cs but I can't seem to call it for a test, i'd like investigate this so that I can test that the DI works correctly  
 Create a wrapper around the StreamWriter in the FileRepository so it can be tested  
+The PizzaFactory does too much now and some of the logic should be moved into the PizzaShop. I think the Factory should produce the pizzs then return them back to the shop where the shop then cooks them and does the delay

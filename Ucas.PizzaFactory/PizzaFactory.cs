@@ -12,6 +12,7 @@ namespace Ucas.PizzaFactory
         private readonly IDataRepository _dataRepository;
         private readonly IRandomWrapperBuilder _randomWrapperBuilder;
         private readonly IDelayWrapper _delayWrapper;
+        private readonly IPizzaOven _pizzaOven;
 
         public PizzaFactory(IPizzaBaseConfiguration pizzaBaseConfiguration,
             IToppingsConfiguration toppingsConfiguration,
@@ -19,7 +20,8 @@ namespace Ucas.PizzaFactory
             IPizzaCookingTimeCalculator pizzaCookingTimeCalculator,
             IDataRepository dataRepository,
             IRandomWrapperBuilder randomWrapperBuilder,
-            IDelayWrapper delayWrapper)
+            IDelayWrapper delayWrapper,
+            IPizzaOven pizzaOven)
         {
             _pizzaBaseConfiguration = pizzaBaseConfiguration ?? throw new ArgumentNullException(nameof(pizzaBaseConfiguration));
             _toppingsConfiguration = toppingsConfiguration ?? throw new ArgumentNullException(nameof(toppingsConfiguration));
@@ -28,6 +30,7 @@ namespace Ucas.PizzaFactory
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
             _randomWrapperBuilder = randomWrapperBuilder ?? throw new ArgumentNullException(nameof(randomWrapperBuilder));
             _delayWrapper = delayWrapper ?? throw new ArgumentNullException(nameof(delayWrapper));
+            _pizzaOven = pizzaOven ?? throw new ArgumentNullException(nameof(pizzaOven));
         }
 
         public async Task CreateRandomPizzasAsync(int numberOfPizzas)
@@ -50,8 +53,9 @@ namespace Ucas.PizzaFactory
 
                 var totalCookingTimeMs = _pizzaCookingTimeCalculator.CalculatePizzaCookingTimeMs(pizzaBase.Type, topping);
 
-                await _delayWrapper.Delay(totalCookingTimeMs);
                 var pizza = new Pizza(pizzaBase, topping, totalCookingTimeMs);
+
+                await _pizzaOven.CookPizza(pizza);
 
                 await _dataRepository.StorePizzaAsync(pizza);
 

@@ -24,6 +24,7 @@ namespace Ucas.PizzaFactory.UnitTests
         private Mock<IDataRepository> _mockDataRepository;
         private Mock<IRandomWrapperBuilder> _mockRandomWrapperBuilder;
         private Mock<IDelayWrapper> _mockDelayWrapper;
+        private Mock<IPizzaOven> _mockPizzaOven;
 
         private PizzaFactory Sut => new PizzaFactory(_mockPizzaBaseConfiguration.Object,
             _mockToppingsConfiguration.Object,
@@ -31,7 +32,8 @@ namespace Ucas.PizzaFactory.UnitTests
             _mockPizzaCookingTimeCalculator.Object,
             _mockDataRepository.Object,
             _mockRandomWrapperBuilder.Object,
-            _mockDelayWrapper.Object);
+            _mockDelayWrapper.Object,
+            _mockPizzaOven.Object);
 
         [SetUp]
         public void SetUp()
@@ -43,6 +45,7 @@ namespace Ucas.PizzaFactory.UnitTests
             _mockPizzaShopConfiguration = new Mock<IPizzaShopConfiguration>();
             _mockPizzaCookingTimeCalculator = new Mock<IPizzaCookingTimeCalculator>();
             _mockDelayWrapper = new Mock<IDelayWrapper>();
+            _mockPizzaOven = new Mock<IPizzaOven>();
 
             _mockDelayWrapper.Setup(dw => dw.Delay(It.IsAny<int>())).Callback(() => { });
 
@@ -81,6 +84,16 @@ namespace Ucas.PizzaFactory.UnitTests
 
             _mockDataRepository.Verify(dr => dr.StorePizzaAsync(It.IsAny<Pizza>()), Times.Exactly(noOfPizzas));
             _mockPizzaCookingTimeCalculator.Verify(ctc => ctc.CalculatePizzaCookingTimeMs(It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(noOfPizzas));
+        }
+
+        [Test]
+        [AutoData]
+        public async Task CreateRandomPizzasAsync_CallsDelayWrapper(int cookingInterval)
+        {
+            _mockPizzaShopConfiguration.Setup(psc => psc.CookingInterval).Returns(cookingInterval);
+            await Sut.CreateRandomPizzasAsync(1);
+
+            _mockDelayWrapper.Verify(dw => dw.Delay(cookingInterval), Times.Once);
         }
 
         [Test]

@@ -7,9 +7,11 @@
             Base = pizzaBase;
             Topping = topping;
             TotalCookingTime = totalCookingTime;
+            Cooked = false;
         }
 
         public PizzaBase Base { get; }
+        public bool Cooked { get; set; }
         public string Topping { get; }
         public int TotalCookingTime { get; }
 
